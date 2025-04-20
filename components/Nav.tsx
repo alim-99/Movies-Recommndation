@@ -50,7 +50,7 @@ const Nav = () => {
 
       {/* Mobile Navigation */}
       {isMenuOpen && (
-        <div className='md:hidden absolute top-16 left-0 right-0 bg-background border-t'>
+        <div className='md:hidden absolute top-16 left-0 right-0 bg-background border-t z-40'>
           <div className='px-2 pt-2 pb-3 space-y-1'>
             <MobileNavDropdown label="Movies" items={movieItems} />
             <MobileNavDropdown label="TV Shows" items={tvItems} />
@@ -73,7 +73,7 @@ const NavDropdownMenu: React.FC<NavDropdownProps> = ({ label, items }) => (
         {label}
       </Button>
     </DropdownMenuTrigger>
-    <DropdownMenuContent align="end">
+    <DropdownMenuContent align="end" className="z-50">
       {items.map((item) => (
         <DropdownMenuItem key={item.href}>
           <Link href={item.href} className="w-full">
@@ -94,7 +94,7 @@ const MobileNavDropdown: React.FC<NavDropdownProps> = ({ label, items }) => (
           {label}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent>
+      <DropdownMenuContent className="z-50">
         {items.map((item) => (
           <DropdownMenuItem key={item.href}>
             <Link href={item.href} className="w-full">
