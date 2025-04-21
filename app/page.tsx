@@ -1,14 +1,16 @@
 import Hero from '@/components/Hero'
-import Nav from '@/components/Nav'
+import LoadMore from '@/components/LoadMore'
 import Trending from '@/components/Trending'
 
 export default function Home() {
 
   return (
     <main>
-      <Nav />
+      <section>
       <Hero />
       <Trending />
+      </section>
+      <LoadMore />
     </main>
   )
 }

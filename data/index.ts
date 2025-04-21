@@ -3,6 +3,14 @@ export interface NavItem {
   href: string
 }
 
+export interface movieItemData {
+  id: number;
+  title?: string;
+  name?: string;
+  poster_path: string;
+  media_type: string;
+}
+
 export const movieItems: NavItem[] = [
   { label: "Popular", href: "/movies/popular" },
   { label: "Now Playing", href: "/movies/now-playing" },

@@ -26,8 +26,8 @@ const Nav = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center h-16'>
           {/* Logo */}
-          <h2 className='text-2xl md:text-4xl font-bold text-[#193D67] dark:text-[#A9C7EA]'>
-            Movies
+          <h2 className='text-2xl md:text-4xl font-bold cursor-pointer text-[#193D67] dark:text-[#A9C7EA]'>
+            <Link href="/">Movies</Link>
           </h2>
 
           {/* Desktop Navigation */}
