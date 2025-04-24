@@ -1,9 +1,10 @@
-import { getAll } from "@/lib/actions/movies.actions"
+import { getTrending } from "@/lib/actions/movies.actions"
 import { movieItemData } from "@/data";
 import ResultsData from "./ResultsData";
 
 const Trending = async () => {
-  const res = await getAll(process.env.TRENDING!);
+  const res = await getTrending(1);
+
 
   return (
     <section className='py-10 container mx-auto px-4 sm:px-6 lg:px-8'>

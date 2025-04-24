@@ -1,24 +1,10 @@
-interface MovieResponse {
-  page: number;
-  results: Movie[];
-  total_pages: number;
-  total_results: number;
-}
+'use server';
 
-interface Movie {
-  id: number;
-  title?: string;
-  name?: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
-  media_type: string;
-}
+export const getTrending = async (page: number) => {
+  const url = `${process.env.TDM_URI}/trending/all/day?language=en-US?page=${page}&limit=10&order=popularity`;
 
-export const getAll = async (url: string): Promise<MovieResponse> => {
   try {
-    const req = await fetch(url, {
+    const res = await fetch(url, {
       method: 'GET',
       headers: {
         accept: 'application/json',
@@ -26,11 +12,13 @@ export const getAll = async (url: string): Promise<MovieResponse> => {
       }
     });
 
-    if (!req.ok) {
-      throw new Error(`HTTP error! status: ${req.status}`);
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
 
-    return await req.json();
+    const data = await res.json();
+
+    return data;
 
   } catch (error: unknown) {
     console.error('Failed to fetch data:', (error as Error).message);
@@ -38,18 +26,108 @@ export const getAll = async (url: string): Promise<MovieResponse> => {
   }
 }
 
-export const getPopular = async (url: string): Promise<MovieResponse> => {
-  const req = await fetch(url, {
-    method: 'GET',
-    headers: {
-      accept: 'application/json',
-      Authorization: process.env.AUTH_HEADER!
+export const getPopular = async (page: number) => {
+  const url = `${process.env.TDM_URI}/movie/popular?page=${page}&limit=10&order=popularity`;
+
+  console.log(url);
+
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: process.env.AUTH_HEADER!
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
     }
-  });
 
-  if (!req.ok) {
-    throw new Error(`HTTP error! status: ${req.status}`);
+    const data = await res.json();
+
+    return data;
+
+  } catch (error: unknown) {
+    console.error('Failed to fetch data:', (error as Error).message);
+    throw error; // Re-throw the error to allow calling code to handle it
   }
+}
 
-  return await req.json();
+export const getNowplaying = async (page: number) => {
+  const url = `${process.env.TDM_URI}/movie/now_playing?page=${page}&limit=10&order=popularity`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: process.env.AUTH_HEADER!
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    return data;
+
+  } catch (error: unknown) {
+    console.error('Failed to fetch data:', (error as Error).message);
+    throw error; // Re-throw the error to allow calling code to handle it
+  }
+}
+
+export const getUpcoming = async (page: number) => {
+  const url = `${process.env.TDM_URI}/movie/upcoming?page=${page}&limit=10&order=popularity`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: process.env.AUTH_HEADER!
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    return data;
+
+  } catch (error: unknown) {
+    console.error('Failed to fetch data:', (error as Error).message);
+    throw error; // Re-throw the error to allow calling code to handle it
+  }
+}
+
+export const getToprated = async (page: number) => {
+  const url = `${process.env.TDM_URI}/movie/top_rated?page=${page}&limit=10&order=popularity`;
+
+  try {
+    const res = await fetch(url, {
+      method: 'GET',
+      headers: {
+        accept: 'application/json',
+        Authorization: process.env.AUTH_HEADER!
+      }
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+
+    return data;
+
+  } catch (error: unknown) {
+    console.error('Failed to fetch data:', (error as Error).message);
+    throw error; // Re-throw the error to allow calling code to handle it
+  }
 }

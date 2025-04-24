@@ -11,6 +11,24 @@ export interface movieItemData {
   media_type: string;
 }
 
+export interface MovieResponse {
+  page: number;
+  results: Movie[];
+  total_pages: number;
+  total_results: number;
+}
+
+export interface Movie {
+  id: number;
+  title?: string;
+  name?: string;
+  overview: string;
+  poster_path: string;
+  release_date: string;
+  vote_average: number;
+  media_type: string;
+}
+
 export const movieItems: NavItem[] = [
   { label: "Popular", href: "/movies/popular" },
   { label: "Now Playing", href: "/movies/now-playing" },
