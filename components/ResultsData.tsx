@@ -3,15 +3,23 @@ import Image from 'next/image';
 import { movieItemData } from '@/data';
 
 const ResultsData = (item: movieItemData) => {
+  const imageUrl = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : null;
+
   return (
     <div key={item.id} className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105">
       <div className="relative h-[300px]">
-        <Image
-          src={`https://image.tmdb.org/t/p/w500${item.poster_path}`}
-          alt={(item.title || item.name || 'Media poster')}
-          fill
-          className="object-cover"
-        />
+        {imageUrl ? (
+          <Image
+            src={imageUrl}
+            alt={(item.title || item.name || 'Media poster')}
+            fill
+            className="object-cover"
+          />
+        ) : (
+          <div className="flex items-center justify-center h-full bg-gray-200 dark:bg-gray-700">
+            <span className="text-gray-500 dark:text-gray-400">No Image Available</span>
+          </div>
+        )}
       </div>
       <div className="p-4">
         <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2 truncate">

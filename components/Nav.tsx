@@ -1,6 +1,7 @@
 'use client'
 
 import Link from 'next/link'
+import Image from 'next/image'
 import React, { useState } from 'react'
 import { ModeToggle } from './ToggleMode'
 import { Menu, X } from 'lucide-react'
@@ -26,12 +27,14 @@ const Nav = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center h-16'>
           {/* Logo */}
-          <h2 className='text-2xl md:text-4xl font-bold cursor-pointer text-[#193D67] dark:text-[#A9C7EA]'>
-            <Link href="/">Movies</Link>
-          </h2>
+          <Image alt='movie' src='./movie-svgrepo-com.svg' width={50} height={50}>
+          </Image>
 
           {/* Desktop Navigation */}
-          <nav className='hidden md:flex items-center space-x-8 text-slate-700 dark:text-slate-300'>
+          <nav className='hidden md:flex items-center space-x-4 text-slate-700 dark:text-slate-300'>
+            <Link href="/" className="flex items-center gap-1">
+              <Button variant="ghost">Home</Button>
+            </Link>
             <NavDropdownMenu label="Movies" items={movieItems} />
             <NavDropdownMenu label="TV Shows" items={tvItems} />
             <NavDropdownMenu label="Actors" items={actorItems} />

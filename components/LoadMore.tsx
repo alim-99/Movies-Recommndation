@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Image from 'next/image';
 import { useInView } from 'react-intersection-observer';
 
@@ -10,12 +10,20 @@ interface LoadMoreProps {
 
 const LoadMore: React.FC<LoadMoreProps> = ({ onLoadMore }) => {
   const { ref, inView } = useInView();
+  const [hasLoaded, setHasLoaded] = useState(false);
 
   useEffect(() => {
-    if (inView) {
+    if (inView && !hasLoaded) {
       onLoadMore();
+      setHasLoaded(true);
     }
-  }, [inView, onLoadMore]);
+  }, [inView, onLoadMore, hasLoaded]);
+
+  useEffect(() => {
+    if (!inView) {
+      setHasLoaded(false);
+    }
+  }, [inView]);
 
   return (
     <section className='flex justify-center items-center w-full'>
