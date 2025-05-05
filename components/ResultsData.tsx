@@ -1,8 +1,8 @@
 import React from 'react';
 import Image from 'next/image';
-import { movieItemData } from '@/data';
+import { ItemData } from '@/data';
 
-const ResultsData = (item: movieItemData) => {
+const ResultsData = (item: ItemData) => {
   const imageUrl = item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : null;
 
   return (
@@ -22,11 +22,14 @@ const ResultsData = (item: movieItemData) => {
         )}
       </div>
       <div className="p-4">
-        <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2 truncate">
+        <h3 className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
           {item.title || item.name}
         </h3>
-        <span className="inline-block px-2 py-1 text-sm bg-indigo-100 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-300 rounded-full">
-          {(item.media_type || 'movie').charAt(0).toUpperCase() + (item.media_type || 'movie').slice(1)}
+        <p className="text-gray-600 dark:text-gray-400 mb-2 line-clamp-3">
+          {item.overview || 'No description available.'}
+        </p>
+        <span className="inline-block px-2 py-1 ml-2 text-sm bg-yellow-400 dark:bg-yellow-500 text-yellow-700 dark:text-yellow-300 rounded-full">
+          {item.vote_average.toString().slice(0, 3)}
         </span>
       </div>
     </div>

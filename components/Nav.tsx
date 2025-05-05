@@ -37,7 +37,7 @@ const Nav = () => {
             </Link>
             <NavDropdownMenu label="Movies" items={movieItems} />
             <NavDropdownMenu label="TV Shows" items={tvItems} />
-            <NavDropdownMenu label="Actors" items={actorItems} />
+            <NavDropdownMenu label="People" items={actorItems} />
             <ModeToggle />
           </nav>
 

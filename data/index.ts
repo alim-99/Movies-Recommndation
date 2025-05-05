@@ -3,30 +3,31 @@ export interface NavItem {
   href: string
 }
 
-export interface movieItemData {
+export interface ItemData {
   id: number;
   title?: string;
   name?: string;
   poster_path: string;
-  media_type: string;
+  vote_average: number;
+  overview?: string;
+  media_type?: string;
+}
+
+export interface peopleItemData {
+  id: number;
+  name: string;
+  profile_path: string;
+  known_for: Array<{
+    id: number;
+    title?: string;
+  }>;
 }
 
 export interface MovieResponse {
   page: number;
-  results: Movie[];
+  results: ItemData[];
   total_pages: number;
   total_results: number;
-}
-
-export interface Movie {
-  id: number;
-  title?: string;
-  name?: string;
-  overview: string;
-  poster_path: string;
-  release_date: string;
-  vote_average: number;
-  media_type: string;
 }
 
 export const movieItems: NavItem[] = [
@@ -44,6 +45,5 @@ export const tvItems: NavItem[] = [
 ]
 
 export const actorItems: NavItem[] = [
-  { label: "Popular People", href: "/actors/popular" },
-  { label: "Born Today", href: "/actors/born-today" },
+  { label: "Popular People", href: "/people/popular" },
 ]

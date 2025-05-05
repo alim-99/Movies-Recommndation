@@ -1,12 +1,12 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import ResultsData from '@/components/ResultsData';
-import { movieItemData } from '@/data';
+import { ItemData } from '@/data';
 import { getTopratedMovies } from '@/lib/actions/movies.actions';
 import LoadMore from '@/components/LoadMore';
 
 const Page = () => {
-  const [movies, setMovies] = useState<movieItemData[]>([]);
+  const [movies, setMovies] = useState<ItemData[]>([]);
   const [page, setPage] = useState(1);
 
   const loadMovies = async (pageNumber: number) => {
@@ -30,7 +30,7 @@ const Page = () => {
       <h2 className='text-4xl font-semibold text-indigo-500 mb-10'>Top-Rated Movies</h2>
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
-        {movies.map((item: movieItemData, index) => (
+        {movies.map((item: ItemData, index) => (
         <ResultsData key={`${item.id}-${index}`} {...item} />
         ))}
       </div>
