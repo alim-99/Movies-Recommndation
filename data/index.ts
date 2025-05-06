@@ -9,8 +9,8 @@ export interface ItemData {
   name?: string;
   poster_path: string;
   vote_average: number;
-  overview?: string;
   media_type?: string;
+  overview?: string;
 }
 
 export interface peopleItemData {

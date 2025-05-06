@@ -13,6 +13,7 @@ import {
 } from "@/components/ui/dropdown-menu"
 import { Button } from "@/components/ui/button"
 import { movieItems, tvItems, actorItems, NavItem } from '@/data'
+import { useRouter } from 'next/navigation'
 
 interface NavDropdownProps {
   label: string
@@ -20,7 +21,14 @@ interface NavDropdownProps {
 }
 
 const Nav = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const router = useRouter();
+
+  const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+  };
 
   return (
     <header className='relative bg-background shadow-sm'>
@@ -29,6 +37,20 @@ const Nav = () => {
           {/* Logo */}
           <Image alt='movie' src='./movie-svgrepo-com.svg' width={50} height={50}>
           </Image>
+
+          {/* Search Bar */}
+          <form onSubmit={handleSearch} className='flex ml-auto space-x-2'>
+            <input
+              type='text'
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder='Search...'
+              className='px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300'
+            />
+            <button type='submit' className='px-3 py-2 bg-blue-500 text-white rounded-md cursor-pointer'>
+              Search
+            </button>
+          </form>
 
           {/* Desktop Navigation */}
           <nav className='hidden md:flex items-center space-x-4 text-slate-700 dark:text-slate-300'>
@@ -54,7 +76,10 @@ const Nav = () => {
       {/* Mobile Navigation */}
       {isMenuOpen && (
         <div className='md:hidden absolute top-16 left-0 right-0 bg-background border-t z-40'>
-          <div className='px-2 pt-2 pb-3 space-y-1'>
+          <div className='px-2 pt-2 pb-3'>
+            <Link href="/" className='px-3 py-2'>
+              <Button variant="ghost">Home</Button>
+            </Link>
             <MobileNavDropdown label="Movies" items={movieItems} />
             <MobileNavDropdown label="TV Shows" items={tvItems} />
             <MobileNavDropdown label="Actors" items={actorItems} />
