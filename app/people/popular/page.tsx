@@ -11,7 +11,6 @@ const Page = () => {
 
   const loadpeople = async (pageNumber: number) => {
     const res = await getPopularPeople(pageNumber);
-    console.log(res.results.poster_path);
     setPeople((prevPeople) => [...prevPeople, ...res.results]);
   };
 

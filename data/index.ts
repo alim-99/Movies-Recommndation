@@ -11,6 +11,9 @@ export interface ItemData {
   vote_average: number;
   media_type?: string;
   overview?: string;
+  release_date: string;
+  first_air_date: string;
+  genre_ids: [number];
 }
 
 export interface peopleItemData {
