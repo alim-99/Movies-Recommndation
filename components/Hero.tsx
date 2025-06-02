@@ -9,14 +9,13 @@ const Hero = () => {
       {/* Content */}
       <div className='relative z-10 container mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='max-w-xl mb-8'>
-          <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-600 mb-4 leading-tight'>
-            Welcome to TMDB
+          <h2 className='text-3xl sm:text-4xl md:text-5xl font-bold text-indigo-700 dark:text-indigo-500 mb-4 leading-tight'>
+            Welcome to movie recommndation 
           </h2>
           <p className='text-lg sm:text-xl font-medium text-slate-400 max-w-lg'>
             Explore millions of movies, TV shows and actors based on your mood.
           </p>
         </div>
-        {/* <SearchBar  /> implement later */}
       </div>
     </section>
   )

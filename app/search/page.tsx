@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { searchAll } from '@/app/api/search';
+import { searchAll } from '@/lib/utils';
 import ResultsData from '@/components/ResultsData';
 import { ItemData } from '@/data';
 import { useSearchParams } from 'next/navigation';

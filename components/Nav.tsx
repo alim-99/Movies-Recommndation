@@ -35,8 +35,14 @@ const Nav = () => {
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8'>
         <div className='flex justify-between items-center h-16'>
           {/* Logo */}
-          <Image alt='movie' src='./movie-svgrepo-com.svg' width={50} height={50}>
-          </Image>
+          <Image
+            className='w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14'
+            alt='movie'
+            src='./movie-svgrepo-com.svg'
+            width={56}
+            height={56}
+            suppressHydrationWarning
+          />
 
           {/* Search Bar */}
           <form onSubmit={handleSearch} className='flex ml-auto space-x-2'>
