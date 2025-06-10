@@ -1,12 +1,13 @@
 'use client';
 
+import { Suspense } from 'react';
 import { useEffect, useState } from 'react';
 import { searchAll } from '@/lib/utils';
 import ResultsData from '@/components/ResultsData';
 import { ItemData } from '@/data';
 import { useSearchParams } from 'next/navigation';
 
-const Page = () => {
+const SearchResults = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get('query');
   const [results, setResults] = useState<ItemData[]>([]);
@@ -54,6 +55,18 @@ const Page = () => {
         </div>
       )}
     </div>
+  );
+};
+
+const Page = () => {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-center items-center min-h-[200px]">
+        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-indigo-500"></div>
+      </div>
+    }>
+      <SearchResults />
+    </Suspense>
   );
 };
 
