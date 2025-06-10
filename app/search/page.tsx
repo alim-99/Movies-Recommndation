@@ -6,7 +6,7 @@ import ResultsData from '@/components/ResultsData';
 import { ItemData } from '@/data';
 import { useSearchParams } from 'next/navigation';
 
-const Search = () => {
+const Page = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get('query');
   const [results, setResults] = useState<ItemData[]>([]);
@@ -57,4 +57,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default Page;
