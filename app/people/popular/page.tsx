@@ -31,7 +31,7 @@ const Page = () => {
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
         {people.map((item: peopleItemData, index) => {
-          const imageUrl = item.profile_path ? `https://image.tmdb.org/t/p/w500${item.profile_path}` : null;
+          const imageUrl = item.profile_path ? `https://image.tmdb.org/t/p/w342${item.profile_path}` : null;
           return (
             <div key={`${item.id}-${index}`} className='bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105'>
               <div className="relative h-[300px]">
