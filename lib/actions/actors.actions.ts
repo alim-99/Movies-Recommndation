@@ -1,7 +1,7 @@
 "use server";
 
 export const getPopularPeople = async (page: number) => {
-  const url = `${process.env.TDM_URI}/person/popular?page=${page}&limit=10&order=popularity`;
+  const url = `${process.env.TDM_URI!}/person/popular?page=${page}&limit=10&order=popularity`;
 
   try {
     const res = await fetch(url, {

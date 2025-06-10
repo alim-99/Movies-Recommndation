@@ -1,7 +1,7 @@
 "use server";
 
 export const getPopularTv = async (page: number) => {
-  const url = `${process.env.TDM_URI}/tv/popular?page=${page}&limit=10&order=popularity`;
+  const url = `${process.env.TDM_URI!}/tv/popular?page=${page}&limit=10&order=popularity`;
 
   try {
     const res = await fetch(url, {
@@ -27,7 +27,7 @@ export const getPopularTv = async (page: number) => {
 }
 
 export const getAiringtodayTv = async (page: number) => {
-  const url = `${process.env.TDM_URI}/tv/airing_today?page=${page}&limit=10&order=popularity`;
+  const url = `${process.env.TDM_URI!}/tv/airing_today?page=${page}&limit=10&order=popularity`;
 
   try {
     const res = await fetch(url, {
@@ -53,7 +53,7 @@ export const getAiringtodayTv = async (page: number) => {
 }
 
 export const getOntv = async (page: number) => {
-  const url = `${process.env.TDM_URI}/tv/on_the_air?page=${page}&limit=10&order=popularity`;
+  const url = `${process.env.TDM_URI!}/tv/on_the_air?page=${page}&limit=10&order=popularity`;
 
   try {
     const res = await fetch(url, {
@@ -79,7 +79,7 @@ export const getOntv = async (page: number) => {
 }
 
 export const getTopratedTv = async (page: number) => {
-  const url = `${process.env.TDM_URI}/tv/top_rated?page=${page}&limit=10&order=popularity`;
+  const url = `${process.env.TDM_URI!}/tv/top_rated?page=${page}&limit=10&order=popularity`;
 
   try {
     const res = await fetch(url, {
