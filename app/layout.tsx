@@ -17,6 +17,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Movies Recommndation App",
   description: "Explore the latest trending movies and tv shows, search for your favorite actors and much more.",
+  icons: "./movie-svgrepo-com.svg"
 };
 
 export default function RootLayout({

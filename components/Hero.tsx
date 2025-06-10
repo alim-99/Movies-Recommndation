@@ -2,7 +2,7 @@ import React from 'react'
 
 const Hero = () => {
   return (
-    <section className='relative flex flex-col items-center justify-center w-full h-[60vh] min-h-[400px] bg-cover bg-center bg-[url(/herobg.avif)]'>
+    <section className='relative flex flex-col items-center justify-center mt-5 w-full h-[60vh] min-h-[400px] bg-cover bg-center bg-[url(/herobg.avif)]'>
       {/* Dark overlay */}
       <div className='absolute inset-0 bg-black/60 dark:bg-black/50'></div>
 
