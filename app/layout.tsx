@@ -11,7 +11,7 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Movies Recommndation App",
+  title: "Movies Recommendation App",
   description: "Explore the latest trending movies and tv shows, search for your favorite actors and much more.",
   icons: "./movie-svgrepo-com.svg"
 };
