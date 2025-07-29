@@ -76,7 +76,7 @@ const ResultsData = (item: ItemData) => {
               </h2>
               <div className="flex flex-wrap gap-2 mb-4">
                 <span className="inline-block px-3 py-1 text-sm font-medium bg-amber-100 dark:bg-amber-900 text-amber-800 dark:text-amber-100 rounded-full">
-                  Rating: {item.vote_average ? item.vote_average.toString().slice(0, 3) : '0'}
+                  Rating: {item.vote_average ? item.vote_average.toFixed(1) : 'N/A'}
                 </span>
                 <span className="inline-block px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">
                   Date: {item.release_date || item.first_air_date || 'N/A'}
