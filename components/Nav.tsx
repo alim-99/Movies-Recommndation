@@ -53,7 +53,18 @@ const Nav = () => {
               placeholder='Search...'
               className='px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300'
             />
-            <button type='submit' className='px-3 py-2 bg-[#172333] dark:bg-[#2C3A4E] text-[#dae0f0] dark:text-[#EEEFF2] rounded-md cursor-pointer'>
+            <button type='submit' className="
+                  px-3 py-2
+                bg-blue-600
+                text-white
+                  rounded-md
+                  cursor-pointer
+                hover:bg-blue-700
+                  transition-colors
+                dark:bg-blue-800
+              dark:hover:bg-blue-700
+              dark:text-white
+              ">
               Search
             </button>
           </form>

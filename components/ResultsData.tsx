@@ -4,14 +4,19 @@ import Image from 'next/image';
 import { ItemData } from '@/data';
 import { useState } from 'react';
 
-const ResultsData = (item: ItemData) => {
+type Genre = { id: number; name: string };
+type ResultsDataProps = ItemData & { genres: Genre[] };
+
+const ResultsData = (props: ResultsDataProps) => {
+  const { genre_ids, genres, ...item } = props;
+
   const [isModalOpen, setIsModalOpen] = useState(false);
   const imageUrl = item.poster_path ? `https://image.tmdb.org/t/p/w342${item.poster_path}` : null;
-  
+
   return (
     <>
-      <div 
-        key={item.id} 
+      <div
+        key={item.id}
         className="bg-white dark:bg-gray-900 rounded-lg shadow-lg overflow-hidden transition-transform duration-300 hover:scale-105 cursor-pointer"
         onClick={() => setIsModalOpen(true)}
       >
@@ -49,6 +54,12 @@ const ResultsData = (item: ItemData) => {
             <span className="inline-block px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">
               Date: {item.release_date || item.first_air_date || 'N/A'}
             </span>
+            <span className="inline-block px-3 py-1 text-sm font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full">
+              Genres: {genre_ids
+                .map((id) => genres.find((g) => g.id === id)?.name)
+                .filter(Boolean).slice(0, 2)
+                .join(', ') || 'N/A'}
+            </span>
           </div>
         </div>
       </div>
@@ -81,6 +92,12 @@ const ResultsData = (item: ItemData) => {
                 <span className="inline-block px-3 py-1 text-sm font-medium bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-100 rounded-full">
                   Date: {item.release_date || item.first_air_date || 'N/A'}
                 </span>
+                <span className="inline-block px-3 py-1 text-sm font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full">
+                  Genres: {genre_ids
+                    .map((id) => genres.find((g) => g.id === id)?.name)
+                    .filter(Boolean)
+                    .join(', ') || 'N/A'}
+              </span>
               </div>
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                 {item.overview || 'No description available.'}

@@ -4,10 +4,12 @@ import ResultsData from '@/components/ResultsData';
 import { ItemData } from '@/data';
 import { getPopularMovies } from '@/lib/actions/movies.actions';
 import LoadMore from '@/components/LoadMore';
+import { getMovieGenres } from '@/lib/actions/geners.actions';
 
 const Page = () => {
   const [movies, setMovies] = useState<ItemData[]>([]);
   const [page, setPage] = useState(1);
+  const [geners, setGenres] = useState<{ id: number; name: string }[]>([]);
 
   const loadMovies = async (pageNumber: number) => {
     const res = await getPopularMovies(pageNumber);
@@ -18,6 +20,14 @@ const Page = () => {
   useEffect(() => {
     loadMovies(page);
   }, [page]);
+
+  useEffect(() => {
+    const fetchGenres = async () => {
+      const genreList = await getMovieGenres();
+      setGenres(genreList);
+    };
+    fetchGenres();
+  }, []);
 
   const loadMoreMovies = () => {
     const nextPage = page + 1;
@@ -31,7 +41,7 @@ const Page = () => {
 
       <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
         {movies.map((item: ItemData, index) => (
-        <ResultsData key={`${item.id}-${index}`} {...item} />
+        <ResultsData key={`${item.id}-${index}`} {...item} genres={geners} />
         ))}
       </div>
 
