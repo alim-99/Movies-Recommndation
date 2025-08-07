@@ -55,9 +55,9 @@ const ResultsData = (props: ResultsDataProps) => {
               Date: {item.release_date || item.first_air_date || 'N/A'}
             </span>
             <span className="inline-block px-3 py-1 text-sm font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full">
-              Genres: {genre_ids
-                .map((id) => genres.find((g) => g.id === id)?.name)
-                .filter(Boolean).slice(0, 2)
+              Genres: {(genre_ids ?? []).map((id) => genres.find((g) => g.id === id)?.name)
+                .filter(Boolean)
+                .slice(0, 2)
                 .join(', ') || 'N/A'}
             </span>
           </div>
@@ -93,11 +93,11 @@ const ResultsData = (props: ResultsDataProps) => {
                   Date: {item.release_date || item.first_air_date || 'N/A'}
                 </span>
                 <span className="inline-block px-3 py-1 text-sm font-medium bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-100 rounded-full">
-                  Genres: {genre_ids
-                    .map((id) => genres.find((g) => g.id === id)?.name)
+                  Genres: {(genre_ids ?? []).map((id) => genres.find((g) => g.id === id)?.name)
                     .filter(Boolean)
+                    .slice(0, 2)
                     .join(', ') || 'N/A'}
-              </span>
+                </span>
               </div>
               <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed">
                 {item.overview || 'No description available.'}

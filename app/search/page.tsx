@@ -6,12 +6,15 @@ import { searchAll } from '@/lib/utils';
 import ResultsData from '@/components/ResultsData';
 import { ItemData } from '@/data';
 import { useSearchParams } from 'next/navigation';
+import { getMovieGenres, getTvGenres } from '@/lib/actions/geners.actions';
 
 const SearchResults = () => {
   const searchParams = useSearchParams();
   const query = searchParams.get('query');
   const [results, setResults] = useState<ItemData[]>([]);
   const [loading, setLoading] = useState(false);
+  const [tvGenres, setTvGenres] = useState<{ id: number; name: string }[]>([]);
+  const [movieGenres, setMovieGenres] = useState<{ id: number; name: string }[]>([]);
 
   useEffect(() => {
     const fetchResults = async () => {
@@ -31,6 +34,24 @@ const SearchResults = () => {
     fetchResults();
   }, [query]);
 
+  useEffect(() => {
+    const fetchGenres = async () => {
+      try {
+        const [tvGenreList, movieGenreList] = await Promise.all([
+          getTvGenres(),
+          getMovieGenres(),
+        ]);
+        setTvGenres(tvGenreList || []);
+        setMovieGenres(movieGenreList || []);
+      } catch (error) {
+        setTvGenres([]);
+        setMovieGenres([]);
+        console.error('Genre fetch error:', error);
+      }
+    };
+    fetchGenres();
+  }, []);
+
   return (
     <div className='container mx-auto px-4 sm:px-6 lg:px-8'>
       <h2 className='text-4xl font-semibold text-indigo-500 mb-10'>
@@ -45,7 +66,7 @@ const SearchResults = () => {
         <div className='grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6'>
           {results.length > 0 ? (
             results.map((item: ItemData, index: number) => (
-              <ResultsData key={`${item.id}-${index}`} {...item} />
+              <ResultsData key={`${item.id}-${index}`} {...item} genres={[...(movieGenres || []), ...(tvGenres || [])]} />
             ))
           ) : (
             <p className="col-span-full text-center text-gray-500">
