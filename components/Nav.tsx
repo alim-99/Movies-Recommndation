@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import Image from 'next/image'
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { ModeToggle } from './ToggleMode'
 import { Menu, X } from 'lucide-react'
 import {
@@ -25,9 +25,19 @@ const Nav = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const router = useRouter();
 
-  const handleSearch = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+  // Search as you type with debounce
+  useEffect(() => {
+    if (searchQuery.trim()) {
+      const timer = setTimeout(() => {
+        router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
+      }, 500); // 500ms debounce
+      
+      return () => clearTimeout(timer);
+    }
+  }, [searchQuery, router]);
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchQuery(e.target.value);
   };
 
   return (
@@ -45,29 +55,15 @@ const Nav = () => {
           />
 
           {/* Search Bar */}
-          <form onSubmit={handleSearch} className='flex ml-auto space-x-2'>
+          <div className='flex ml-auto space-x-2'>
             <input
               type='text'
               value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
+              onChange={handleInputChange}
               placeholder='Search...'
-              className='px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300'
+              className='px-3 py-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300 min-w-[200px]'
             />
-            <button type='submit' className="
-                  px-3 py-2
-                bg-blue-600
-                text-white
-                  rounded-md
-                  cursor-pointer
-                hover:bg-blue-700
-                  transition-colors
-                dark:bg-blue-800
-              dark:hover:bg-blue-700
-              dark:text-white
-              ">
-              Search
-            </button>
-          </form>
+          </div>
 
           {/* Desktop Navigation */}
           <nav className='hidden md:flex items-center space-x-4 text-slate-700 dark:text-slate-300'>
